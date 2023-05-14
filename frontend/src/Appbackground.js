@@ -171,6 +171,15 @@ const Appbackground = () => {
           },
         },
         fpsLimit: 60,
+        emitters: {
+          position: {
+            y: 55,
+            x: -30
+          },
+          rate: {
+            delay: 3,
+            quantity: 2
+          },
         particles: {
           shape: {
             type: "images",
@@ -201,7 +210,7 @@ const Appbackground = () => {
               offset: 10
             },
             enable: true,
-            speed: { min: 1, max: 2.5 },
+            speed: { min: 3, max: 4 },
             direction: "right",
             random: true,
             straight: false,
@@ -230,11 +239,11 @@ const Appbackground = () => {
           },
         },
         detectRetina: true,
+      },
 
 
-
-
-        particles1: {
+        
+        particles: {
           color: {
             value: "#ffffff",
           },
