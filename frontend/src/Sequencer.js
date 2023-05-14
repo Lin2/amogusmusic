@@ -64,7 +64,7 @@ const Sequencer = () => {
     return (
         <div>
             <div></div>
-            <button onClick={startStopPlaying} text={isPlaying.toString()} style={{padding:"20px 50px", fontFamily: "Impostograph", fontSize:"60px"}} disabled={hasStarted}>PLAY</button>
+            <button className = "playButton" onClick={startStopPlaying} text={isPlaying.toString()} style={{padding:"10px 50px", fontFamily: "Impostograph", fontSize:"60px"}} disabled={hasStarted}>PLAY</button>
             <div className="rowGroupHeader">Beep</div>
             <SequencerRow ref={ref_music_1} sound={sounds.beep} note="C5" name="C5" beat={highlight}/>
             <SequencerRow ref={ref_music_2} sound={sounds.beep} note="A4" name="A4" beat={highlight}/>
