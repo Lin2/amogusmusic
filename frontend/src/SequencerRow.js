@@ -5,16 +5,14 @@ const SequencerRow = forwardRef(function SequenceRow(props, ref) {
 
     const [enabled, setEnabled] = useState(Array(10).fill(true));
     const sampler = new Tone.Sampler({
-        urls: {
-            G5: "Eject%20Text.mp3",
-        },
-        baseUrl: "https://lin2.github.io/note-like/",
+        urls: props.sound,
+        baseUrl: "https://lin2.github.io/",
     }).toDestination();
 
     useImperativeHandle(ref, () => ({
         playSound(index) {
             if (enabled[index]) {
-                sampler.triggerAttackRelease(["D4"], 0.5);
+                sampler.triggerAttackRelease([props.note], 0.5);
             }
         }
     }));
