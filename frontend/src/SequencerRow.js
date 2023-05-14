@@ -1,9 +1,9 @@
-import {React, useImperativeHandle, useState} from 'react';
+import {React, forwardRef, useImperativeHandle, useState} from 'react';
 import * as Tone from 'tone'
 
-const SequencerRow = (props, ref) => {
+const SequencerRow = forwardRef(function SequenceRow(props, ref) {
 
-    const [enabled, setEnabled] = useState(Array(10).fill(false));
+    const [enabled, setEnabled] = useState(Array(10).fill(true));
     const sampler = new Tone.Sampler({
         urls: {
             G5: "Eject%20Text.mp3",
@@ -26,6 +26,6 @@ const SequencerRow = (props, ref) => {
     );
 
 
-}
+});
 
 export default SequencerRow;
