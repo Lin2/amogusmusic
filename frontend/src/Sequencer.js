@@ -1,9 +1,11 @@
-import SequencerRow from "./SequencerKey";
+import SequencerRow from "./SequencerRow";
 
 const Sequencer = () => {
 
     return (
-        <SequencerRow/>
+        <div>
+            <SequencerRow/>
+        </div>
     );
 }
 
