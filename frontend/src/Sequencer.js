@@ -27,7 +27,8 @@ const Sequencer = () => {
     return (
         <div>
             <button onClick={startPlaying} text={isPlaying.toString()}></button>
-            <SequencerRow ref={ref}/>
+            <SequencerRow ref={ref} name="Button Sound B1"/>
+            <SequencerRow ref={ref} name="Button SOund "/>
         </div>
     );
 }

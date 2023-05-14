@@ -35,6 +35,7 @@ const SequencerRow = forwardRef(function SequenceRow(props, ref) {
            //currentPage = i
            }
        } style={{backgroundColor: enabled[i] ? 'green': 'white', padding: '15px 15px'}} >
+        
    </button>
 )
 }
@@ -43,6 +44,7 @@ const SequencerRow = forwardRef(function SequenceRow(props, ref) {
             {/* <button type="button"></button> */}
             {/* <button onClick={activateButton}>   */}
             {/* </button> */}
+            {props.name}
             {paging}
         </div>
     );
