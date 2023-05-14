@@ -3,7 +3,7 @@ import * as Tone from 'tone'
 
 const SequencerRow = forwardRef(function SequenceRow(props, ref) {
 
-    const [enabled, setEnabled] = useState(Array(10).fill(true));
+    const [enabled, setEnabled] = useState(Array(32).fill(false));
     const sampler = new Tone.Sampler({
         urls: props.sound,
         baseUrl: "https://lin2.github.io/",
@@ -16,10 +16,32 @@ const SequencerRow = forwardRef(function SequenceRow(props, ref) {
             }
         }
     }));
-
+    let copyE = []
+    const activateButton = (i) => {
+        copyE = [...enabled]
+        copyE[i] = !copyE[i]
+        setEnabled(copyE);
+        // console.log(i)
+    }
+    const paging = []
+    //let currentPage = 0;
+    for (let i= 0;i<32; i++){
+        paging.push(
+           <button 
+           onClick={() => {
+           activateButton(i);
+           //currentPage = i
+           }
+       } style={{backgroundColor: enabled[i] ? 'green': 'white', padding: '15px 15px'}} >
+   </button>
+)
+}
     return (
         <div>
-            <button type="button"></button>
+            {/* <button type="button"></button> */}
+            {/* <button onClick={activateButton}>   */}
+            {/* </button> */}
+            {paging}
         </div>
     );
 
