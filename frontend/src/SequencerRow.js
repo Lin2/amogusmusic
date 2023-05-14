@@ -40,7 +40,7 @@ const SequencerRow = forwardRef(function SequenceRow(props, ref) {
            activateButton(i);
            //currentPage = i
            }
-       } style={{backgroundColor: enabled[i] ? 'green': 'white', padding: '15px 15px', border: '2px solid', borderColor: buttonBorderColor[i]}} >
+       } style={{backgroundColor: enabled[i] ? '#41E1DC': 'white', padding: '15px 15px', border: '2px solid', borderColor: buttonBorderColor[i]}} >
         
    </button>
 )
