@@ -32,9 +32,9 @@ const Sequencer = () => {
         notif: {C3: "iconic%20maybe/Notification.mp3"},
     }
 
-    useEffect(() => {
-        setHighlight(beat);
-    }, [beat])
+    // useEffect(() => {
+    //     setHighlight(beat);
+    // }, [beat])
 
     const repeat = (time) => {
         try {
@@ -52,6 +52,7 @@ const Sequencer = () => {
             // ref_notif.current.playSound(beat);
             beat = (beat + 1) % NUM_STEPS;
             console.log(beat);
+            setHighlight(beat);
         } catch(error) {
             console.log(error);
         }
