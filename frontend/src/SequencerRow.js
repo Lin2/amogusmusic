@@ -1,9 +1,10 @@
 import {React, forwardRef, useImperativeHandle, useState} from 'react';
 import * as Tone from 'tone'
+import { NUM_STEPS } from './Constants';
 
 const SequencerRow = forwardRef(function SequenceRow(props, ref) {
 
-    const [enabled, setEnabled] = useState(Array(32).fill(false));
+    const [enabled, setEnabled] = useState(Array(NUM_STEPS).fill(false));
     const sampler = new Tone.Sampler({
         urls: props.sound,
         baseUrl: "https://lin2.github.io/",
