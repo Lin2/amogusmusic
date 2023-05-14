@@ -13,6 +13,10 @@ const Sequencer = () => {
     const ref_music_low_2 = useRef();
     const ref_emergency = useRef();
     const ref_suryan = useRef();
+    const ref_vent = useRef();
+    const ref_kill = useRef();
+    const ref_carddeny = useRef();
+    const ref_notif = useRef();
     let beat = 0;
     const [highlight, setHighlight] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -22,6 +26,10 @@ const Sequencer = () => {
         beep: {G5: "note-like/Eject%20Text.mp3"},
         beep_low: {D3: "note-like/Panel%20Boarding%20Start%20Scan.mp3"},
         suryan: {C3: "iconic%20maybe/suryan.mp3"},
+        vent: {C3: "iconic%20maybe/Vent%20Open.mp3"},
+        kill: {C3: "iconic%20maybe/Impostor%20Kill.mp3"},
+        carddeny: {C3: "iconic%20maybe/Panel%20Admin%20Card%20Deny.mp3"},
+        notif: {C3: "iconic%20maybe/Notification.mp3"},
     }
 
     useEffect(() => {
@@ -38,6 +46,10 @@ const Sequencer = () => {
             ref_music_low_1.current.playSound(beat);
             ref_music_low_2.current.playSound(beat);
             ref_suryan.current.playSound(beat);
+            ref_vent.current.playSound(beat);
+            ref_carddeny.current.playSound(beat);
+            ref_kill.current.playSound(beat);
+            // ref_notif.current.playSound(beat);
             beat = (beat + 1) % NUM_STEPS;
             console.log(beat);
         } catch(error) {
@@ -78,6 +90,14 @@ const Sequencer = () => {
             <SequencerRow ref={ref_music_low_2} sound={sounds.beep_low} note="B1" name="B1" beat={highlight}/>
             <div className="rowGroupHeader">Emergency Button</div>
             <SequencerRow ref={ref_emergency} sound={sounds.emergency} note="B1" beat={highlight}/>
+            <div className="rowGroupHeader">Vent</div>
+            <SequencerRow ref={ref_vent} sound={sounds.vent} note="C3" beat={highlight}/>
+            <div className="rowGroupHeader">Kill</div>
+            <SequencerRow ref={ref_kill} sound={sounds.kill} note="C3" beat={highlight}/>
+            {/* <div className="rowGroupHeader">Notification</div>
+            <SequencerRow ref={ref_notif} sound={sounds.notif} note="C3" beat={highlight}/> */}
+            <div className="rowGroupHeader">Card Deny</div>
+            <SequencerRow ref={ref_carddeny} sound={sounds.carddeny} note="C3" beat={highlight}/>
             <div className="rowGroupHeader">AAA</div>
             <SequencerRow ref={ref_suryan} sound={sounds.suryan} note="C3" duration={5} beat={highlight}/>
         </div>
