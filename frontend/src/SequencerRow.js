@@ -20,7 +20,7 @@ const SequencerRow = forwardRef(function SequenceRow(props, ref) {
     }));
     useEffect(() => {
         let temp = Array(NUM_STEPS).fill("black");
-        temp[props.beat] = "yellow";
+        temp[props.beat] = "black";
         setButtonBorderColor(temp);
     }, [props.beat]);
 

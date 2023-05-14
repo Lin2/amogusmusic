@@ -28,25 +28,28 @@ const Sequencer = () => {
         setHighlight(beat);
     }, [beat])
 
+    const repeat = (time) => {
+        try {
+            ref_music_1.current.playSound(beat);
+            ref_music_2.current.playSound(beat);
+            ref_music_3.current.playSound(beat);
+            ref_music_4.current.playSound(beat);
+            ref_emergency.current.playSound(beat);
+            ref_music_low_1.current.playSound(beat);
+            ref_music_low_2.current.playSound(beat);
+            ref_suryan.current.playSound(beat);
+            beat = (beat + 1) % NUM_STEPS;
+            console.log(beat);
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
     const startStopPlaying = () => {
         if (!hasStarted) {
             Tone.start();
             Tone.getDestination().volume.rampTo(-10, 0.001)
             setHasStarted(true);
-            const repeat = (time) => {
-                try {
-                    ref_music_1.current.playSound(beat);
-                    ref_music_2.current.playSound(beat);
-                    ref_music_3.current.playSound(beat);
-                    ref_emergency.current.playSound(beat);
-                    ref_music_low_1.current.playSound(beat);
-                    ref_music_low_2.current.playSound(beat);
-                    ref_suryan.current.playSound(beat);
-                    beat = (beat + 1) % NUM_STEPS;
-                } catch(error) {
-                    console.log(error);
-                }
-            }
 
             Tone.Transport.bpm.value = 114;
             Tone.Transport.scheduleRepeat(repeat, "8n");
