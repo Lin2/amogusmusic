@@ -1,10 +1,11 @@
-import {React, forwardRef, useImperativeHandle, useState} from 'react';
+import {React, forwardRef, useImperativeHandle, useState, useEffect} from 'react';
 import * as Tone from 'tone'
 import { NUM_STEPS } from './Constants';
 
 const SequencerRow = forwardRef(function SequenceRow(props, ref) {
 
     const [enabled, setEnabled] = useState(Array(NUM_STEPS).fill(false));
+    const [buttonBorderColor, setButtonBorderColor] = useState(Array(NUM_STEPS).fill("black"));
     const sampler = new Tone.Sampler({
         urls: props.sound,
         baseUrl: "https://lin2.github.io/",
@@ -13,10 +14,16 @@ const SequencerRow = forwardRef(function SequenceRow(props, ref) {
     useImperativeHandle(ref, () => ({
         playSound(index) {
             if (enabled[index]) {
-                sampler.triggerAttackRelease([props.note], 0.5);
+                sampler.triggerAttackRelease([props.note], props.duration ?? 0.5);
             }
         }
     }));
+    useEffect(() => {
+        let temp = Array(NUM_STEPS).fill("black");
+        temp[props.beat] = "yellow";
+        setButtonBorderColor(temp);
+    }, [props.beat]);
+
     let copyE = []
     const activateButton = (i) => {
         copyE = [...enabled]
@@ -33,7 +40,7 @@ const SequencerRow = forwardRef(function SequenceRow(props, ref) {
            activateButton(i);
            //currentPage = i
            }
-       } style={{backgroundColor: enabled[i] ? 'green': 'white', padding: '15px 15px'}} >
+       } style={{backgroundColor: enabled[i] ? 'green': 'white', padding: '15px 15px', border: '2px solid', borderColor: buttonBorderColor[i]}} >
         
    </button>
 )
@@ -43,8 +50,8 @@ const SequencerRow = forwardRef(function SequenceRow(props, ref) {
             {/* <button type="button"></button> */}
             {/* <button onClick={activateButton}>   */}
             {/* </button> */}
-            {props.name}
             {paging}
+            {props.name}
         </div>
     );
 

@@ -3,12 +3,13 @@
     src: local('Impostograph'), url(../public/Impostograph-Regular.ttf) format('truetype');
 }
 
-body {
-    font-family: 'Impostograph';
-}
-
 .rowGroupHeader {
     font-family: 'Impostograph';
     font-size: 40px;
     margin-top: 0.5cm;
+}
+
+.impostorFont{
+    font-family: 'Impostograph';
+    font-size: 40px;
 }
