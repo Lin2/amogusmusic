@@ -16,6 +16,7 @@ const Sequencer = () => {
     let beat = 0;
     const [highlight, setHighlight] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [hasStarted, setHasStarted] = useState(false);
     const sounds = {
         emergency: {B1: "iconic%20maybe/Alarm%20Emergency%20Meeting.mp3"},
         beep: {G5: "note-like/Eject%20Text.mp3"},
@@ -28,11 +29,10 @@ const Sequencer = () => {
     }, [beat])
 
     const startStopPlaying = () => {
-        if (!isPlaying) {
-            setIsPlaying(true);
+        if (!hasStarted) {
             Tone.start();
             Tone.getDestination().volume.rampTo(-10, 0.001)
-
+            setHasStarted(true);
             const repeat = (time) => {
                 try {
                     ref_music_1.current.playSound(beat);
@@ -50,6 +50,9 @@ const Sequencer = () => {
 
             Tone.Transport.bpm.value = 114;
             Tone.Transport.scheduleRepeat(repeat, "8n");
+        }
+        if (!isPlaying) {
+            setIsPlaying(true);
             Tone.Transport.start();
         } else {
             beat = 0;
@@ -61,7 +64,7 @@ const Sequencer = () => {
     return (
         <div>
             <div></div>
-            <button onClick={startStopPlaying} text={isPlaying.toString()} style={{padding:"20px 50px", fontFamily: "Impostograph", fontSize:"60px"}}>PLAY</button>
+            <button onClick={startStopPlaying} text={isPlaying.toString()} style={{padding:"20px 50px", fontFamily: "Impostograph", fontSize:"60px"}} disabled={hasStarted}>PLAY</button>
             <div className="rowGroupHeader">Beep</div>
             <SequencerRow ref={ref_music_1} sound={sounds.beep} note="C5" name="C5" beat={highlight}/>
             <SequencerRow ref={ref_music_2} sound={sounds.beep} note="A4" name="A4" beat={highlight}/>
