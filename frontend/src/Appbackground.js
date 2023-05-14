@@ -177,7 +177,7 @@ const Appbackground = () => {
             x: -30
           },
           rate: {
-            delay: 3,
+            delay: 5,
             quantity: 2
           },
         particles: {
