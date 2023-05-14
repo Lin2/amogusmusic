@@ -3,6 +3,10 @@
     src: local('Impostograph'), url(../public/Impostograph-Regular.ttf) format('truetype');
 }
 
+body {
+    color: white;
+}
+
 .rowGroupHeader {
     font-family: 'Impostograph';
     font-size: 40px;
